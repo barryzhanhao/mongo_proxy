@@ -28,7 +28,7 @@ const MAX_CONCURRENT_CONNECTIONS: usize = 1024;
 async fn main() -> Result<()> {
     let listen_addr = "0.0.0.0:27017";
     let upstream_addr = std::env::var("MONGO_URI")
-        .unwrap_or_else(|_| "mongodb://127.0.0.1:27018".to_string());
+        .unwrap_or_else(|_| "mongodb://mongoadmin:secret@127.0.0.1:27018".to_string());
 
     let mongo_client = Arc::new(Client::with_uri_str(&upstream_addr).await
         .with_context(|| format!("failed to connect to {}", upstream_addr))?);
